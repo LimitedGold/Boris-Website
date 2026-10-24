@@ -110,7 +110,7 @@ const ExperienceCarousel=({experience,currentBadge,isMobile,lang})=>{
     return v.logo
       ?React.createElement("div",{style:{height:sz,minWidth:sz,maxWidth:small?140:180,borderRadius:small?11:14,background:"#fff",display:"flex",alignItems:"center",justifyContent:"center",padding:small?"7px 11px":"10px 14px",boxShadow:"0 4px 14px rgba(0,0,0,0.35)"}},React.createElement("img",{src:v.logo,alt:emp.company,style:{maxWidth:"100%",maxHeight:"100%",objectFit:"contain",display:"block"}}))
       :v.domain
-        ?React.createElement("div",{style:{width:sz,height:sz,borderRadius:small?11:14,background:"#fff",display:"flex",alignItems:"center",justifyContent:"center",padding:8,boxShadow:"0 4px 14px rgba(0,0,0,0.35)"}},React.createElement("img",{src:"https://logo.clearbit.com/"+v.domain,alt:emp.company,style:{maxWidth:"100%",maxHeight:"100%",objectFit:"contain"}}))
+        ?React.createElement("div",{style:{width:sz,height:sz,borderRadius:small?11:14,background:"#fff",display:"flex",alignItems:"center",justifyContent:"center",padding:8,boxShadow:"0 4px 14px rgba(0,0,0,0.35)"}},React.createElement("img",{src:"https://logo.clearbit.com/"+v.domain,alt:emp.company,style:{maxWidth:"100%",maxHeight:"100%",objectFit:"contain"},onError:(e)=>{e.currentTarget.style.display="none";const fb=document.createElement("span");fb.style.cssText="font-size:20px;font-weight:900;color:#F07830";fb.textContent=emp.company.charAt(0);e.currentTarget.parentNode.appendChild(fb)}}))
         :React.createElement("div",{style:{width:sz,height:sz,borderRadius:small?11:14,background:"rgba(255,255,255,0.12)",backdropFilter:"blur(8px)",border:"0.5px solid rgba(255,255,255,0.25)",display:"flex",alignItems:"center",justifyContent:"center"}},React.createElement(Zap,{size:small?18:22,color:"#fff"}));
   };
   return React.createElement(React.Fragment,null,
@@ -125,9 +125,9 @@ const ExperienceCarousel=({experience,currentBadge,isMobile,lang})=>{
           onMouseLeave:!isMobile?()=>setFlipped(null):undefined,
           onClick:()=>{if(isMobile)setFlipped(isFlipped?null:i);else scrollTo(i)},
           style:{flexShrink:0,width:cardW,height:cardH,scrollSnapAlign:"start",perspective:1500,cursor:"pointer"}},
-          React.createElement("div",{style:{width:"100%",height:"100%",position:"relative",transformStyle:"preserve-3d",transition:"transform 0.7s cubic-bezier(0.4,0,0.2,1)",transform:isFlipped?"rotateY(180deg)":"none"}},
+          React.createElement("div",{style:{width:"100%",height:"100%",position:"relative",transformStyle:"preserve-3d",WebkitTransformStyle:"preserve-3d",willChange:"transform",transition:"transform 0.7s cubic-bezier(0.4,0,0.2,1)",transform:isFlipped?"rotateY(180deg)":"rotateY(0deg)"}},
             // ── FRONT ──
-            React.createElement("div",{style:{position:"absolute",inset:0,backfaceVisibility:"hidden",WebkitBackfaceVisibility:"hidden",borderRadius:24,overflow:"hidden",background:v.color,boxShadow:isActive?"0 24px 60px rgba(0,0,0,0.55), 0 0 0 1.5px "+G+"66":"0 14px 40px rgba(0,0,0,0.4)"}},
+            React.createElement("div",{style:{position:"absolute",inset:0,backfaceVisibility:"hidden",WebkitBackfaceVisibility:"hidden",transform:"rotateY(0deg)",borderRadius:24,overflow:"hidden",background:v.color,boxShadow:isActive?"0 24px 60px rgba(0,0,0,0.55), 0 0 0 1.5px "+G+"66":"0 14px 40px rgba(0,0,0,0.4)"}},
               v.img&&React.createElement("img",{src:v.img,alt:"",loading:"lazy",style:{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover",opacity:0.42,zIndex:0}}),
               React.createElement("div",{style:{position:"absolute",inset:0,background:"linear-gradient(180deg, "+v.color+"BB 0%, "+v.color+"33 30%, rgba(0,0,0,0.40) 60%, rgba(0,0,0,0.94) 100%)",zIndex:1}}),
               React.createElement("div",{style:{position:"relative",zIndex:2,height:"100%",padding:26,display:"flex",flexDirection:"column",justifyContent:"space-between"}},
